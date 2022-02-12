@@ -1,0 +1,977 @@
+####input
+input()
+username = input("Enter username:")
+
+
+##failist lugemine.
+
+//////////////////
+with open("andmed.txt", "r", encoding="utf-8") as fail:
+    andmed_list = list()
+    
+    for rida in fail:
+        andmed = int(rida.strip())
+        andmed_list.append(andmed)
+        
+    fail.close()
+    print(fail.closed)
+    
+    
+    arvud_kokku = 0
+    for anne in andmed_list:
+        arvud_kokku += anne
+//////////////////
+To open the file, use the built-in open() function.
+
+The open() function returns a file object, which has a read() method for reading the content of the file:
+Example:
+////
+f = open("demofile.txt", "r")
+print(f.read())  /// nii loeb terve faili, sama mis readlines
+f.close() 
+///
+
+
+int - strip()
+
+str - readline()
+		readlines() // readlines() returns a list containing one line per element. Note that these lines contain the \n (newline-character) at the end of the line. You can strip off this newline-character by using the strip()-method
+		spilt()
+
+#lugemise atribuudid
+If the file is located in a different location, you will have to specify the file path, like this:
+	f = open("D:\\myfiles\welcome.txt", "r")
+
+By default the read() method returns the whole text, but you can also specify how many characters you want to return:
+	f = open("demofile.txt", "r")
+	print(f.read(5)) 
+
+You can return one line by using the readline() method:
+f = open("demofile.txt", "r")
+print(f.readline()) 
+
+f=open('data.txt', 'w') # will make a new file or erase a file of that name if it is present
+f=open('data.txt', 'r') # will open a file as read-only
+f=open('data.txt', 'a') # will open a file for appending (appended data goes to the end of the file)
+
+|          Mode          |  r   |  r+  |  w   |  w+  |  a   |  a+  |
+| :--------------------: | :--: | :--: | :--: | :--: | :--: | :--: |
+|          Read          |  +   |  +   |      |  +   |      |  +   |
+|         Write          |      |  +   |  +   |  +   |  +   |  +   |
+|         Create         |      |      |  +   |  +   |  +   |  +   |
+|         Cover          |      |      |  +   |  +   |      |      | //kõik kaob failist ära
+| Point in the beginning |  +   |  +   |  +   |  +   |      |      |
+|    Point in the end    |      |      |      |      |  +   |  +   |
+
+
+
+##kasulikud fnc
+range() // range(2, 6) -- 2-5 arvud loeb viimane nr on see mille ees lõpetab
+		// range(6) -- 0-5 arvud
+		// range(2, 6, 2) -- sama mis üleval aga see näitab sammu.
+
+len()	// millegi pikkus, lenght
+
+
+##looobid ja muud kasulik.
+continue
+break
+pass
+
+
+IF:
+    Equals: a == b
+    Not Equals: a != b
+    Less than: a < b
+    Less than or equal to: a <= b
+    Greater than: a > b
+    Greater than or equal to: a >= b
+
+    and is not or
+
+if statements cannot be empty, but if you for some reason have an if statement with no content, put in the pass statement to avoid getting an error.
+
+if ....:
+	...
+elif .....:
+	...
+else:
+	....
+
+
+LOOPS:
+
+WHILE:
+With the break statement we can stop the loop even if the while condition is true:
+
+	With the continue statement we can stop the current iteration, and continue with the next:
+/////
+i = 1
+while i < 6:
+  print(i)
+  i += 1
+else:
+...
+//////
+
+FOR:
+
+A for loop is used for iterating over a sequence (that is either a list, a tuple, a dictionary, a set, or a string).
+
+This is less like the for keyword in other programming languages, and works more like an iterator method as found in other object-orientated programming languages.
+
+With the for loop we can execute a set of statements, once for each item in a list, tuple, set etc.
+
+////
+Print each fruit in a fruit list:
+
+fruits = ["apple", "banana", "cherry"]
+for x in fruits:
+  print(x)
+////
+Loop through the letters in the word "banana":
+
+for x in "banana":
+  print(x)
+/////
+Print each adjective for every fruit:
+
+adj = ["red", "big", "tasty"]
+fruits = ["apple", "banana", "cherry"]
+
+for x in adj:
+  for y in fruits:
+    print(x, y) 
+///
+siin samuti saab *pass* statemendiga errorist lahti kui luup on tühi.
+
+
+
+##listid ja sõnastikud
+len() -- pikkus
+
+
+LIST:
+list() ##[] 
+
+/////
+a = [1, 2, 3, 4]
+a[0] -- 1
+////
+
+-1 -- viimane asi
+
+[0:-1] -- range, 0 index kuni viimane index // viimane on välja arvatud aga kuna -1 siis saab viimase kätte ilusti.
+
+[:4] -- algusest kuni 4 aga 4 va
+////
+if "mingi_asi" in list_millest_otsid:
+	........
+/////
+#listist muutmine.
+list[1] = "Mingi_uus_väärtus"
+//
+list[1:3] = ["1_väärtus", "2_väärtus"]
+/////////
+To insert a new list item, without replacing any of the existing values, we can use the insert() method.
+The insert() method inserts an item at the specified index:
+
+thislist = ["apple", "banana", "cherry"]
+thislist.insert(2, "watermelon")
+///////////
+Using the append() method to append an item:
+
+thislist = ["apple", "banana", "cherry"]
+thislist.append("orange")
+//////////////
+Add the elements of tropical to thislist:
+
+thislist = ["apple", "banana", "cherry"]
+tropical = ["mango", "pineapple", "papaya"]
+thislist.extend(tropical)
+////////////
+NB!!!!!!
+The extend() method does not have to append lists, you can add any iterable object (tuples, sets, dictionaries etc.).
+//////////////////////////////////////////////////
+The remove() method removes the specified item.
+Remove "banana":
+
+thislist = ["apple", "banana", "cherry"]
+thislist.remove("banana")
+///////////////////
+The pop() method removes the specified index.
+Remove the second item:
+
+thislist = ["apple", "banana", "cherry"]
+thislist.pop(1)
+print(thislist)
+///////////////////////
+The del keyword also removes the specified index:
+Example
+Remove the first item:
+
+thislist = ["apple", "banana", "cherry"]
+del thislist[0]
+print(thislist)
+////////////////////////////////
+The del keyword can also delete the list completely.
+
+thislist = ["apple", "banana", "cherry"]
+del thislist 
+////////////////////////////////
+The clear() method empties the list.
+The list still remains, but it has no content.
+
+thislist = ["apple", "banana", "cherry"]
+thislist.clear()
+//////////////////////////////
+Print all items in the list, one by one:
+
+thislist = ["apple", "banana", "cherry"]
+for x in thislist:
+  print(x) 
+
+ /////////////////////////////
+You can also loop through the list items by referring to their index number.
+
+Use the range() and len() functions to create a suitable iterable.
+Example
+
+Print all items by referring to their index number:
+
+
+thislist = ["apple", "banana", "cherry"]
+for i in range(len(thislist)):
+  print(thislist[i]) 
+
+//////////////////////////////////
+You can loop through the list items by using a while loop.
+Use the len() function to determine the length of the list, then start at 0 and loop your way through the list items by refering to their indexes.
+Remember to increase the index by 1 after each iteration.
+
+
+Print all items, using a while loop to go through all the index numbers
+
+thislist = ["apple", "banana", "cherry"]
+i = 0
+while i < len(thislist):
+  print(thislist[i])
+  i = i + 1 
+
+//////////////////////////////
+List comprehension offers a shorter syntax when you want to create a new list based on the values of an existing list.
+
+Example:
+
+Based on a list of fruits, you want a new list, containing only the fruits with the letter "a" in the name.
+Without list comprehension you will have to write a for statement with a conditional test inside:
+Example
+
+
+fruits = ["apple", "banana", "cherry", "kiwi", "mango"]
+newlist = []
+
+for x in fruits:
+  if "a" in x:
+    newlist.append(x)
+
+print(newlist) 
+
+////////////////////////////////////
+List objects have a sort() method that will sort the list alphanumerically, ascending, by default:
+Example
+
+-------------------
+Sort the list alphabetically:
+
+thislist = ["orange", "mango", "kiwi", "pineapple", "banana"]
+thislist.sort()
+
+-----------------
+Sort the list numerically:
+
+thislist = [100, 50, 65, 82, 23]
+thislist.sort()
+print(thislist)
+////////////////////////////////
+Sort the list descending:
+
+thislist = ["orange", "mango", "kiwi", "pineapple", "banana"]
+thislist.sort(reverse = True)
+-------------------------------
+thislist = [100, 50, 65, 82, 23]
+thislist.sort(reverse = True)
+
+//////////////////////////////
+By default the sort() method is case sensitive, resulting in all capital letters being sorted before lower case letters:
+Luckily we can use built-in functions as key functions when sorting a list.
+
+So if you want a case-insensitive sort function, use str.lower as a key function:
+Perform a case-insensitive sort of the list:
+
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.sort(key = str.lower)
+///////////////////////////////
+The reverse() method reverses the current sorting order of the elements.
+
+Reverse the order of the list items:
+
+thislist = ["banana", "Orange", "Kiwi", "cherry"]
+thislist.reverse()
+
+///////////////////////////////
+There are ways to make a copy, one way is to use the built-in List method copy().
+
+Make a copy of a list with the copy() method:
+
+thislist = ["apple", "banana", "cherry"]
+mylist = thislist.copy()
+
+//////////////////////////
+Make a copy of a list with the list() method:
+
+thislist = ["apple", "banana", "cherry"]
+mylist = list(thislist)
+
+////////////////////////
+Join two list:
+list1 = ["a", "b", "c"]
+list2 = [1, 2, 3]
+
+list3 = list1 + list2
+//////////////////////////
+Use the extend() method to add list2 at the end of list1:
+
+list1 = ["a", "b" , "c"]
+list2 = [1, 2, 3]
+
+list1.extend(list2)
+
+//////////////////////
+Append list2 into list1:
+
+list1 = ["a", "b" , "c"]
+list2 = [1, 2, 3]
+
+for x in list2:
+  list1.append(x)
+
+///////////////////////
+
+Method 			Description
+append()		Adds an element at the end of the list
+clear()			Removes all the elements from the list
+copy()			Returns a copy of the list
+count()			Returns the number of elements with the specified value
+extend()		Add the elements of a list (or any iterable), to the end of the current list
+index()			Returns the index of the first element with the specified value
+insert()		Adds an element at the specified position
+pop()			Removes the element at the specified position
+remove()		Removes the item with the specified value
+reverse()		Reverses the order of the list
+sort()			Sorts the list
+
+
+SÕNASTIKUD:
+dict() ##{}
+
+//////////////
+Print the "brand" value of the dictionary:
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+print(thisdict["brand"])
+/////////////////////////
+Get the value of the "model" key:
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+x = thisdict["model"]
+------------------------
+x = thisdict.get("model")
+------------------------
+////////////////////////////
+The keys() method will return a list of all the keys in the dictionary.
+
+Get a list of the keys:
+x = thisdict.keys() 
+-------------------------
+Tagastab mis tulbad on....
+-------------------------
+//////////////////////////////
+The values() method will return a list of all the values in the dictionary.
+
+Get a list of the values:
+
+x = thisdict.values() 
+
+////////////////////////////
+The items() method will return each item in a dictionary, as tuples in a list.
+
+Get a list of the key:value pairs
+
+x = thisdict.items() 
+------
+tulba nimi ja sellele vastav väärtus
+----
+//////////////////////////
+To determine if a specified key is present in a dictionary use the in keyword:
+
+Check if "model" is present in the dictionary:
+
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+if "model" in thisdict:
+  print("Yes, 'model' is one of the keys in the thisdict dictionary") 
+
+/////////////////////////
+You can change the value of a specific item by referring to its key name:
+
+Change the "year" to 2018:
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict["year"] = 2018
+
+/////////////////////////////
+The update() method will update the dictionary with the items from the given argument.
+
+The argument must be a dictionary, or an iterable object with key:value pairs.
+
+Update the "year" of the car by using the update() method:
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.update({"year": 2020}) 
+////////////////////////////////////////
+
+Adding an item to the dictionary is done by using a new index key and assigning a value to it:
+
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict["color"] = "red"
+print(thisdict)
+
+/////////////////////////
+
+The update() method will update the dictionary with the items from a given argument. If the item does not exist, the item will be added.
+
+Add a color item to the dictionary by using the update() method:
+thisdict =	{
+  "brand": "Ford",
+  "model": "Mustang",
+  "year": 1964
+}
+thisdict.update({"color": "red"}) 
+
+//////////////////////////
+
+There are several methods to remove items from a dictionary:
+
+The pop() method removes the item with the specified key name:
+thisdict.pop("model")
+
+The popitem() method removes the last inserted item (in versions before 3.7, a random item is removed instead):
+thisdict.popitem()
+
+The del keyword removes the item with the specified key name:
+del thisdict["model"]
+
+-------------------------------
+The del keyword can also delete the dictionary completely:
+del thisdict
+------------------------------
+
+The clear() method empties the dictionary:
+thisdict.clear()
+
+////////////////////////////////
+
+Print all key names in the dictionary, one by one:
+
+for x in thisdict:
+  print(x) 
+
+------------------------
+You can use the keys() method to return the keys of a dictionary:
+
+for x in thisdict.keys():
+  print(x) 
+
+////////////////////
+Print all values in the dictionary, one by one:
+
+for x in thisdict:
+  print(thisdict[x]) 
+
+------------------
+
+You can also use the values() method to return values of a dictionary:
+
+for x in thisdict.values():
+  print(x) 
+
+///////////////////////
+
+Loop through both keys and values, by using the items() method:
+
+for x, y in thisdict.items():
+  print(x, y) 
+
+/////////////////////
+
+Make a copy of a dictionary with the copy() method:
+mydict = thisdict.copy()
+
+Make a copy of a dictionary with the dict() function:
+mydict = dict(thisdict)
+
+/////////////////////
+
+Create three dictionaries, then create one dictionary that will contain the other three dictionaries:
+child1 = {
+  "name" : "Emil",
+  "year" : 2004
+}
+child2 = {
+  "name" : "Tobias",
+  "year" : 2007
+}
+child3 = {
+  "name" : "Linus",
+  "year" : 2011
+}
+
+myfamily = {
+  "child1" : child1,
+  "child2" : child2,
+  "child3" : child3
+} 
+
+///////////////////
+(date, temp) = line.split() #paneb kahele muutujale erinevad väärtused 1 korraga.
+temperature[int(date)] = int(temp) # lisab numbrid sõnastikku
+
+////////////////////////
+
+Method 			Description
+clear()			Removes all the elements from the dictionary
+copy()			Returns a copy of the dictionary
+fromkeys()		Returns a dictionary with the specified keys and value
+get()			Returns the value of the specified key
+items()			Returns a list containing a tuple for each key value pair
+keys()			Returns a list containing the dictionary's keys
+pop()			Removes the element with the specified key
+popitem()		Removes the last inserted key-value pair
+setdefault()	Returns the value of the specified key. If the key does not exist: insert the key, with the specified value
+update()		Updates the dictionary with the specified key-value pairs
+values()		Returns a list of all the values in the dictionary
+
+
+
+
+##Try...Except
+An except clause may name multiple exceptions as a parenthesized tuple, for example
+
+except (IDontLikeYouException, YouAreBeingMeanException) as e:
+    pass //exit()
+
+
+
+///
+try:
+  print(x)
+except NameError:
+  print("Variable x is not defined")
+except:
+  print("Something else went wrong") 
+//Seda võib nii ka kirjutada
+try:
+  print("Hello")
+except:
+  print("Something went wrong")
+else:
+  print("Nothing went wrong") 
+
+ ////
+try:
+  print(x)
+except:
+  print("Something went wrong")
+finally:
+  print("The 'try except' is finished") 
+ //////
+try:
+  f = open("demofile.txt")
+  try:
+    f.write("Lorum Ipsum")
+  except:
+    print("Something went wrong when writing to the file")
+  finally:
+    f.close()
+except:
+  print("Something went wrong when opening the file") 
+///
+
+
+#advanced errorid
+As a Python developer you can choose to throw an exception if a condition occurs.
+
+To throw (or raise) an exception, use the raise keyword.
+//////
+x = -1
+
+if x < 0:
+  raise Exception("Sorry, no numbers below zero") 
+
+/////
+x = "hello"
+
+if not type(x) is int:
+  raise TypeError("Only integers are allowed") 
+///
+
+
+
+##funktsioonid
+////
+def funk_nimi(andmed):
+	....
+	return mingi(d)_andmed
+////
+
+
+##print // format
+
+sõnu saab liita kas plussidega või komadega. // sõnede puhul +=
+
+///
+print(object(s), sep=separator, end=end, file=file, flush=flush) 
+///
+print("Hello", "how are you?", sep="---", end="\n")
+///
+
+#format
+.format(a, b, c) -- {0:}{1:}....
+
+///formaat
+
+//STR
+Align right:
+'{:>10}'.format('test')
+
+Align left:
+'{:10}'.format('test')
+
+choose the padding character:
+'{:_<10}'.format('test')
+
+center align values:
+'{:^10}'.format('test')
+
+Truncating long strings:
+'{:.5}'.format('xylophone')
+
+Combining truncating and padding:
+'{:10.5}'.format('xylophone')
+
+//NUM
+Integers:
+'{:d}'.format(42)
+
+Floats:
+'{:f}'.format(3.141592653589793)
+'{:f.2}'.format(3.1415)
+
+
+Padding numbers:
+/int
+'{:4d}'.format(42)
+/float
+'{:06.2f}'.format(3.141592653589793)
+
+Signed numbers:
+'{:+d}'.format(42)
+'{: d}'.format((- 23))
+
+position of the sign symbol relative to the padding:
+'{:=5d}'.format((- 23))
+'{:=+5d}'.format(23)
+
+
+
+
+///////
+print(f'{i+1} kuupäeval oli {temperature[i+1]} kraadi')
+
+
+//////////////
+myorder = "I have a {carname}, it is a {model}."
+print(myorder.format(carname = "Ford", model = "Mustang"))
+/////////
+carname = "Ford"
+model = "Mustang"
+
+myorder = "I have a {carname}, it is a {model}."
+print(myorder.format(carname = carname, model = model))
+/////
+
+
+
+##operators
+
+Operator 	Name 			Example 	
++ 			Addition 		x + y 	
+- 			Subtraction 	x - y 	
+* 			Multiplication 	x * y 	
+/ 			Division 		x / y 	
+% 			Modulus 		x % y 	
+** 			Exponentiation 	x ** y 	
+// 			Floor division 	x // y
+
+
+Operator 	Example 	Same As 
+= 			x = 5 		x = 5 	
++= 			x += 3 		x = x + 3 	
+-= 			x -= 3 		x = x - 3 	
+*= 			x *= 3 		x = x * 3 	
+/= 			x /= 3 		x = x / 3 	
+%= 			x %= 3 		x = x % 3 	
+//= 		x //= 3 	x = x // 3 	
+**= 		x **= 3 	x = x ** 3 	
+&= 			x &= 3 		x = x & 3 	
+|= 			x |= 3 		x = x | 3 	
+^= 			x ^= 3 		x = x ^ 3 	
+>>= 		x >>= 3 	x = x >> 3 	
+<<= 		x <<= 3 	x = x << 3
+
+Operator 	Name 						Example 	
+== 			Equal 						x == y 	
+!= 			Not equal 					x != y 	
+> 			Greater than 				x > y 	
+< 			Less than 					x < y 	
+>= 			Greater than or equal to 	x >= y 	
+<= 			Less than or equal to 		x <= y
+
+Operator 	Description 												Example 	
+and  		Returns True if both statements are true 					x < 5 and  x < 10 	
+or 			Returns True if one of the statements is true 				x < 5 or x < 4 	
+not 		Reverse the result, returns False if the result is true 	not(x < 5 and x < 10)
+
+Operator 	Description 												Example 	
+is  		Returns True if both variables are the same object 			x is y 	
+is not 		Returns True if both variables are not the same object 		x is not y
+
+Operator 	Description 																		Example 	
+in  		Returns True if a sequence with the specified value is present in the object 		x in y 	
+not in 		Returns True if a sequence with the specified value is not present in the object 	x not in y
+
+Operator 	Name 					Description
+&  			AND 					Sets each bit to 1 if both bits are 1
+| 			OR 						Sets each bit to 1 if one of two bits is 1
+^ 			XOR 					Sets each bit to 1 if only one of two bits is 1
+~  			NOT 					Inverts all the bits
+<< 			Zero fill left shift 	Shift left by pushing zeros in from the right and let the leftmost bits fall off
+>> 		Signed right shift 			Shift right by pushing copies of the leftmost bit in from the left, and let the rightmost bits fall off
+
+##data types
+///
+kysida saab -- type()
+///
+
+Text Type: 			str
+Numeric Types: 		int, float, complex -- // tihti lõpped tähega j
+Sequence Types: 	list, tuple, range
+Mapping Type: 		dict
+Set Types: 			set, frozenset
+Boolean Type: 		bool
+Binary Types: 		bytes, bytearray, memoryview
+
+numbrid tähega e on sama mis 10 astmel arvud -- 1e5 on sama mis 1*10^5
+
+##random
+//////
+import random
+
+print(random.randrange(1, 10)) 
+random.randint()
+///
+Return a number between 3 and 9 (both included):
+import random
+
+print(random.randint(3, 9)) 
+////
+
+
+##math
+from math import log
+
+import math
+
+x = math.sqrt(x)
+x = math.ceil(x)
+y = math.floor(x)
+x = math.pi
+
+math.log(x,10)
+math.log10(x)
+
+
+
+##date time
+
+import datetime
+
+x = datetime.datetime.now()
+
+%d 	Day of month 01-31
+%m 	Month as a number 01-12
+%Y 	Year, full version
+%y 	Year, short version, without century
+%H 	Hour 00-23
+%M 	Minute 00-59
+------------------
+
+import time
+current_time = time.localtime()
+#current_time[0] = aasta
+#current_time[1] = kuu
+#current_time[2] = päev
+
+
+//str värk
+
+islower()
+lower()
+upper()
+isspace()
+isuppper()
+.capitalize()
+
+The chr() method returns a character (a string) from an integer (represents unicode code point of the character).
+
+
+
+/////muu
+
+---.find() // otsib seda mis sulgude vahel kas listist või siis sõnest....
+
+count = int(file.readline()) // loeb 1. rea
+file.close() // paneb faili kinni
+
+print(f'{x} .........')
+
+
+list.append(int(line[-1]) // viimaseks lisamine
+
+        
+##if "3" in str(i[0]):
+.....
+
+##range(count -1)
+
+The ord() function returns an integer representing the Unicode character.
+
+ridu = veerge = 3
+
+
+.format(i)
+
+list.index() -- leiad indexi kui tead nime...
+
+//////////
+ridu, veerge = map(int, fail_sisse.readline().strip().split()) #map() astendamine //saad väärtused kokku panna
+
+# Add two lists using map and lambda
+  
+numbers1 = [1, 2, 3]
+numbers2 = [4, 5, 6]
+  
+result = map(lambda x, y: x + y, numbers1, numbers2)
+print(list(result))
+
+Output :
+
+[5, 7, 9]
+//////////////////////////
+
+
+##
+j = [10, 2, 1, 3, 6]
+for i in range(2, len(j)):
+    print(j[i])
+
+
+
+###ruut fnc
+x_1 = (-(b) + (((b**2) - (4*a*c))**0.5)) / 2*a
+x_2 = (-(b) - (((b**2) - (4*a*c))**0.5)) / 2*a
+
+
+
+
+
+
+
+////////////////////
+
+#kohtade vahetus
+# a = 3
+# b = 5
+# 
+# c = [a, b]
+# 
+# a = c[1]
+# b = c[0]
+# 
+# exit()
+# või
+# 
+# a = 3
+# b = 5
+# 
+# c = a
+# a = b
+# b = c
+
+
+
+
+##NB!
+The break state
+ment terminates the loop containing it. Control of the program flows to the statement immediately after the body of the loop.
+If the break statement is inside a nested loop (loop inside another loop), the break statement will terminate the innermost loop.
+
+The continue statement is used to skip the rest of the code inside a loop for the current iteration only. Loop does not terminate but continues on with the next iteration.
+
+
+##kae yle
+for/FOREACH - teeb yhe kaupa.
+
+while tsykkel ei pea olema täidetud.
+
+do tsykkel on nagu while aga peab olema täidetud.
+
+while/while true ja for…. py sama umbes while true nagu do
+
+
+/////////////
+
+# print('dssdfs', end='') #// end='' - reavahetus l6ppeb sellega millega rida lõpeb.
+
+# // - täis arv jagamine
+# % - jäägi leidmine
