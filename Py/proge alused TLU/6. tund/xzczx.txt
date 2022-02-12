@@ -1,0 +1,30 @@
+Kirjutada programm, mis kontrollib, kas antud positiivne täisarv on liig- või lihtaasta number. 
+(Aasta on liigaasta, kui tema number jagub neljaga, välja arvatud need aastad, mille 
+number jagub sajaga, kuid ei jagu neljasajaga.)
+
+
+
+
+
+1. kas input oli ikka täisarv.
+
+2. aatsa liigasta kontroll.
+	2.1 kas arv jagub 4
+		kui arv jagub kas 100?
+			siis ei
+		kui aga ei jagub 400?
+			siis ja
+		
+//////////////////////
+
+hulk 
+
+ekv-klassid:
+1. ei jagu 4 - lihtaasta	|2011	
+2. jagub 4-ga  ligaasta		|2012
+3. jagub 4-ga ja 100 ja ei 400	|2100
+4. jagub 4 ja ei 100 ja 40	|2000
+
+//////////////////////
+vahemik(vanus)
+hulk(ruutvõrrand)(test andmete hulk.)

@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<flowgorithm fileversion="2.11">
+    <attributes>
+        <attribute name="name" value=""/>
+        <attribute name="authors" value="Arvuti"/>
+        <attribute name="about" value=""/>
+        <attribute name="saved" value="2021-09-14 09:18:09 AM"/>
+        <attribute name="created" value="QXJ2dXRpO0xBUFRPUC0ySVM3SDVSRTsyMDIxLTA5LTE0OzA4OjIxOjM0IEFNOzI5NDc="/>
+        <attribute name="edited" value="QXJ2dXRpO0xBUFRPUC0ySVM3SDVSRTsyMDIxLTA5LTE0OzA5OjE4OjA5IEFNOzI7MzA2NQ=="/>
+    </attributes>
+    <function name="Main" type="None" variable="">
+        <parameters/>
+        <body>
+            <declare name="arv1, arv2" type="Integer" array="False" size=""/>
+            <input variable="arv1"/>
+            <input variable="arv2"/>
+            <if expression="arv1 &gt; arv2">
+                <then>
+                    <if expression="arv2 = arv1">
+                        <then>
+                            <output expression="&quot;v&#245;rdsed&quot;" newline="True"/>
+                        </then>
+                        <else>
+                            <output expression="&quot;arv2 suurem arv1&quot;" newline="True"/>
+                        </else>
+                    </if>
+                    <output expression="&quot;arv1 suurem arv2&quot;" newline="True"/>
+                </then>
+                <else/>
+            </if>
+        </body>
+    </function>
+</flowgorithm>
