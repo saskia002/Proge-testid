@@ -1,0 +1,6 @@
+edasi 40
+paremale 90
+edasi 50
+tagasi 30
+vasakule 90
+edasi 30
