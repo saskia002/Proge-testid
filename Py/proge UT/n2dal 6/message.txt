@@ -1,0 +1,187 @@
+import random
+import sys
+import easygui
+from easygui import *
+
+# Variables
+Title = 'Rock Paper Scissors'
+
+# CPU Class
+class CPU(object):
+    def __init__(self):
+        pass
+    score = 0
+    name = 'CPU'
+    
+    def chooseWeapon(self):
+        self.weapon = random.choice(['Rock', 'Paper', 'Scissors'])
+        return self.weapon
+
+Computer = CPU()
+
+
+# Players Class
+class Players(object):
+    def __init__(self):
+        pass
+    score = 0
+    def chooseName(self):
+        self.name = enterbox('Enter you name.', Title, 'Name: ')
+        return self.name
+        
+    def chooseWeapon(self):
+        self.weapon = buttonbox(self.name[5:] , Title,\
+        ('Rock', 'Paper', 'Scissors'))
+        return self.weapon
+
+
+ObjPlayer1 = Players()
+ObjPlayer2 = Players()
+
+
+#-------------------------------------------------------------#
+    
+#GameMode 1: Player 1 vs. CPU
+def GM1():
+    GameMode = buttonbox('Choose the number of games!', Title, ('Best of 3', 'Best of 5', 'Best of 7'))
+
+    if GameMode == 'Best of 3':
+        MatchDigit = 3
+    elif GameMode == 'Best of 5':
+        MatchDigit = 5
+    else:
+        MatchDigit = 7
+
+    ObjPlayer1.chooseName()
+    P1Name = ObjPlayer1.name[5:]
+    MatchNumber = 1
+    
+    while MatchNumber <= MatchDigit:
+        match_screen = msgbox('Match Number ' + str(MatchNumber) + '\n' + P1Name + ': ' + str(ObjPlayer1.score) + '\n' \
+                              'CPU: ' + str(Computer.score), Title)
+        P1Weapon = ObjPlayer1.chooseWeapon()
+        CPUChoice = Computer.chooseWeapon()
+
+        msgbox('The CPU chose ' + CPUChoice, 'Title')
+    
+        if P1Weapon == CPUChoice:
+            ObjPlayer1.score += 0
+            Computer.score += 0
+        elif P1Weapon == 'Rock':
+            if CPUChoice == 'Scissors':
+                ObjPlayer1.score += 1
+            elif CPUChoice == 'Paper':
+                Computer.score += 1
+        elif P1Weapon == 'Scissors':
+            if CPUChoice == 'Rock':
+                Computer.score += 1
+            elif CPUChoice == 'Paper':
+                ObjPlayer1.score += 1
+        elif P1Weapon == 'Paper': 
+            if CPUChoice == 'Rock': 
+                ObjPlayer1.score += 1
+            elif CPUChoice == 'Scissors':
+                Computer.score += 1
+        MatchNumber += 1
+        
+    if ObjPlayer1.score > Computer.score:
+        msgbox('Congratulations! You WIN!!', Title, ok_button = 'Go Back')
+    elif ObjPlayer1.score == Computer.score:
+        msgbox('You tied!! Nobody won.', Title, ok_button = 'Go Back')
+    else:
+        msgbox('Sorry! You lose.', Title,'OK','Loser_Picture.jpg')
+        
+    Computer.score = 0
+    ObjPlayer1.score = 0
+    MatchNumber = 1
+
+
+
+#GameMode 2: Player 1 vs. Player 2
+
+def GM2():
+    GameMode = buttonbox('Choose the number of games!', Title, ('Best of 3', 'Best of 5', 'Best of 7'))
+
+    if GameMode == 'Best of 3':
+        MatchDigit = 3
+    elif GameMode == 'Best of 5':
+        MatchDigit = 5
+    else:
+        MatchDigit = 7
+
+    ObjPlayer1.chooseName()
+    ObjPlayer2.chooseName()
+
+    P1Name = ObjPlayer1.name[5:]
+    P2Name = ObjPlayer2.name[5:]
+
+    MatchNumber = 1
+
+    while MatchNumber <= MatchDigit:
+        match_screen = msgbox('Match Number ' + str(MatchNumber) + '\n' + P1Name + ': ' + str(ObjPlayer1.score) + '\n' \
+                        + P2Name + ': ' + str(ObjPlayer2.score), Title)
+            
+        P1Weapon = ObjPlayer1.chooseWeapon()
+        P2Weapon = ObjPlayer2.chooseWeapon()
+
+        # Must use a variable in place of the spliced names everywhere
+        msgbox(P1Name + ' chose ' + P1Weapon + '\n' + P2Name + ' chose ' + P2Weapon, 'Title')
+   
+           
+        if P1Weapon == P2Weapon:
+            ObjPlayer1.score += 0
+            ObjPlayer2.score += 0
+        elif P1Weapon == 'Rock':
+            if P2Weapon == 'Paper':
+                ObjPlayer2.score += 1
+            elif P2Weapon == 'Scissors':
+                ObjPlayer1.score += 1
+        elif P1Weapon == 'Paper':
+            if P2Weapon == 'Scissors':
+                ObjPlayer2.score += 1
+            elif P2Weapon == 'Rock':
+                ObjPlayer1.score += 1
+        elif P1Weapon == 'Scissors':
+            if P2Weapon == 'Rock':
+                ObjPlayer2.score += 1
+            elif P2Weapon == 'Paper':
+                ObjPlayer1.score += 1
+        MatchNumber += 1
+
+        
+    if ObjPlayer1.score > ObjPlayer2.score:
+        msgbox(P1Name + ' wins!', Title, ok_button = 'Go Back')
+    elif ObjPlayer1.score == ObjPlayer2.score:
+        msgbox('You both tied!! Nobody won.', Title, ok_button = 'Go Back')
+    else:
+        msgbox(P2Name + ' wins!', Title, ok_button = 'Go Back')
+
+    ObjPlayer1.score = 0
+    ObjPlayer2.score = 0
+    MatchNumber = 1        
+        
+
+
+##----------------------------------------
+#Title Screen, Credits, and Exit Method
+
+TitleScreen = True
+
+while TitleScreen == True:
+    a = buttonbox('Welcome to Rock Paper Scissors!!!', Title ,('Credits', 'Start', 'Exit'))
+    if a == 'Credits':
+        TitleScreen == False
+        msgbox("This game was developed using Python 3.4 and EasyGUI \n (C) 2016 Jamal Paden",'Credits',ok_button="Back")
+        TitleScreen == True
+    if a == 'Exit':
+        TitleScreen == False
+        sys.exit(0)
+        
+    if a == 'Start':
+        TitleScreen == False
+        b = buttonbox('Game Modes', 'Game Modes',('Player 1 vs. CPU', 'Player 1 vs. Player 2'))
+        print(b)
+        if b == 'Player 1 vs. CPU':
+            GM1()
+        else:
+            GM2()
